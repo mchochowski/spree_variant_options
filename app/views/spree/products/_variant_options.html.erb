@@ -33,7 +33,7 @@
         allow_backorders: <%==  !!Spree::Config[:allow_backorders] -%>,
         allow_select_outofstock: <%== !!SpreeVariantOptions::VariantConfig[:allow_select_outofstock] -%>,
         default_instock: <%== !!SpreeVariantOptions::VariantConfig[:default_instock] -%>,
-        i18n: <%== {:out_of_stock => t(:out_of_stock) }.to_json -%>
+        i18n: <%== {:out_of_stock => t(:out_of_stock), :select => t(:select_variant) }.to_json -%>
       });
     //]]>
     </script>
