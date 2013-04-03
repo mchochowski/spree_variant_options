@@ -180,7 +180,13 @@ function VariantOptions(params) {
   function toggle() {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
-      $('#product-price .price').removeClass('unselected').text(variant.price);
+      var price;
+      if (variant.price.money.currency.symbol_first) {
+        price = variant.price.money.currency.symbol + " " + (variant.price.money.cents / variant.price.money.currency.subunit_to_unit)
+      } else {
+        price = (variant.price.money.cents / variant.price.money.currency.subunit_to_unit) + " " + variant.price.money.currency.symbol
+      }
+      $('#product-price .price').removeClass('unselected').text(price);
       if (variant.count > 0 || variant.on_demand || allow_backorders)
         $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
